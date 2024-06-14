@@ -180,6 +180,64 @@ function App() {
 }
 ```
 
+## Using react-error-boundary in Micro-Frontend Architecture
+
+Integrating react-error-boundary into your micro-frontend setup can enhance resilience by catching and displaying fallback UI for errors in federated modules. This is particularly important in a micro-frontend setup where independent modules might fail due to network issues, version mismatches, or other unforeseen errors.
+
+### Why react-error-boundary?
+
+The react-error-boundary library provides a straightforward way to catch JavaScript errors anywhere in your component tree, log those errors, and display a fallback UI. This is essential in micro-frontends for:
+
+- Isolating Failures: Preventing errors in one micro-frontend from breaking the entire host application.
+- Improving UX: Showing user-friendly messages instead of the app crashing.
+- Debugging: Easier tracking of errors across different federated modules.
+
+### Installation
+
+First, install the react-error-boundary package:
+
+```sh
+npm i react-error-boundary
+```
+
+### Step-By-Step Integration
+
+1. In the host module, create a component **FallbackComponent.js**:
+
+```sh
+function FallbackComponent({ error }) {
+  return (
+    <div role="alert">
+      <p>Something went wrong:</p>
+      <pre>{error.message}</pre>
+    </div>
+  );
+}
+
+export default FallbackComponent;
+```
+
+2. Wrap Remote Components with ErrorBoundary:
+
+```sh
+import FallbackComponent from "./FallbackComponent/FallbackComponent";
+import { ErrorBoundary } from "react-error-boundary";
+
+<ErrorBoundary
+  FallbackComponent={FallbackComponent}
+  resetKeys={["someKey"]}
+>
+  <React.Suspense fallback={<div>Loading Remote App1...</div>}>
+    <AppR1 />
+  </React.Suspense>
+  <React.Suspense fallback={<div>Loading Remote App2...</div>}>
+    <AppR2 />
+  </React.Suspense>
+</ErrorBoundary>
+```
+
+By wrapping remote components with ErrorBoundary, any errors within this components will be caught, and the fallback UI will be displayed.
+
 ## Troubleshooting
 
 - Compatibility Issues: Ensure all federated modules use compatible versions of shared libraries to prevent conflicts.
