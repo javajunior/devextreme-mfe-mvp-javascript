@@ -5,19 +5,18 @@ const deps = require("./package.json").dependencies;
 module.exports = {
   mode: "development",
   devServer: {
-    port: 3000,
+    port: 3002,
     historyApiFallback: true,
   },
   webpack: {
     plugins: [
       new ModuleFederationPlugin({
-        name: "host",
+        name: "remote2",
         filename: "remoteEntry.js",
-        remotes: {
-          remote1: "remote1@http://localhost:3001/remoteEntry.js",
-          remote2: "remote2@http://localhost:3002/remoteEntry.js",
+        remotes: {},
+        exposes: {
+          "./App": "./src/App",
         },
-        exposes: {},
         shared: {
           ...deps,
           react: {
@@ -27,18 +26,6 @@ module.exports = {
           "react-dom": {
             singleton: true,
             requiredVersion: deps["react-dom"],
-          },
-          "react-router-dom": {
-            singleton: true,
-            requiredVersion: deps["react-router-dom"],
-          },
-          devextreme: {
-            singleton: true,
-            requiredVersion: deps["devextreme"],
-          },
-          "devextreme-react": {
-            singleton: true,
-            requiredVersion: deps["devextreme-react"],
           },
         },
       }),

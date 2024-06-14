@@ -5,19 +5,18 @@ const deps = require("./package.json").dependencies;
 module.exports = {
   mode: "development",
   devServer: {
-    port: 3000,
+    port: 3001,
     historyApiFallback: true,
   },
   webpack: {
     plugins: [
       new ModuleFederationPlugin({
-        name: "host",
+        name: "remote1",
         filename: "remoteEntry.js",
-        remotes: {
-          remote1: "remote1@http://localhost:3001/remoteEntry.js",
-          remote2: "remote2@http://localhost:3002/remoteEntry.js",
+        remotes: {},
+        exposes: {
+          "./TaskList": "./src/TaskList",
         },
-        exposes: {},
         shared: {
           ...deps,
           react: {

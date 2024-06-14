@@ -11,6 +11,7 @@ This guide explains how to convert a Create-React-App (CRA) project into a micro
 Craco is an easy and comprehensible configuration layer for create-react-app. It allows you to configure CRA without ejecting, making it easier to customize your setup to integrate Webpack Module Federation.
 
 According with craco NPM documentation:
+
 > To customize most things when using Create React App, you can eject. However, you'll then need to maintain every configuration and script yourself, which can be a bit annoying. CRACO, which stands for Create React App Configuration Override, allows you to get all of > the benefits of Create React App without ejecting. Customize your configurations ESLint, Babel, PostCSS, and many more with just a single configuration file at the root of your project.
 
 ## Prerequisites
@@ -20,7 +21,8 @@ Ensure your project meets the following requirements before proceeding:
 - **Create-React-App**: Since Module Federation is a Webpack 5 plugin, your project should be using Create-React-App v5.0.0 or newer, as older versions are based on Webpack 4, which does not support Module Federation.
 
 If your project has been scaffolded using previous version of Create-React-App, you must migrate it before continue.
-  - [Create-React-App Releases](https://github.com/facebook/create-react-app/releases): Refer to the official release notes for migration guides. We suggest to use the latest version, which is the v.5.0.1 at the time of writing.
+
+- [Create-React-App Releases](https://github.com/facebook/create-react-app/releases): Refer to the official release notes for migration guides. We suggest to use the latest version, which is the v.5.0.1 at the time of writing.
 
 ## Installation Steps
 
@@ -85,10 +87,10 @@ module.exports = {
         },
       }),
     ],
-  },
-  configure: {
-    output: {
-      publicPath: "auto",
+    configure: {
+      output: {
+        publicPath: "auto",
+      },
     },
   },
 };
