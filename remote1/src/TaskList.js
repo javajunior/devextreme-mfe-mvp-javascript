@@ -1,3 +1,7 @@
+import "devextreme/dist/css/dx.common.css";
+import "./themes/generated/theme.base.css";
+import "./themes/generated/theme.additional.css";
+import "./dx-styles.scss";
 import React from "react";
 import "devextreme/data/odata/store";
 import DataGrid, {
