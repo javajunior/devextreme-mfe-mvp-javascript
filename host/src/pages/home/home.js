@@ -1,5 +1,7 @@
 import React from "react";
 import LoadPanel from "devextreme-react/load-panel";
+import FallbackComponent from "../../FallbackComponent";
+import { ErrorBoundary } from "react-error-boundary";
 
 import "./home.scss";
 
@@ -220,9 +222,11 @@ export default function Home() {
         </div>
       </div>
       <div className={"content-block"}>
-        <React.Suspense fallback={<LoadPanel visible={true} />}>
-          <Remote2 />
-        </React.Suspense>
+        <ErrorBoundary FallbackComponent={FallbackComponent}>
+          <React.Suspense fallback={<LoadPanel visible={true} />}>
+            <Remote2 />
+          </React.Suspense>
+        </ErrorBoundary>
       </div>
     </React.Fragment>
   );
