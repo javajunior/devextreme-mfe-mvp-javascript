@@ -1,4 +1,6 @@
 import React from "react";
+import LoadPanel from "devextreme-react/load-panel";
+
 import "./home.scss";
 
 const Remote2 = React.lazy(() => import("remote2/App"));
@@ -7,7 +9,6 @@ export default function Home() {
   return (
     <React.Fragment>
       <h2 className={"content-block"}>Home</h2>
-      <Remote2 />
       <div className={"content-block"}>
         <div className={"dx-card responsive-paddings"}>
           <div className={"logos-container"}>
@@ -217,6 +218,11 @@ export default function Home() {
             .
           </p>
         </div>
+      </div>
+      <div className={"content-block"}>
+        <React.Suspense fallback={<LoadPanel visible={true} />}>
+          <Remote2 />
+        </React.Suspense>
       </div>
     </React.Fragment>
   );
