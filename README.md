@@ -220,13 +220,10 @@ export default FallbackComponent;
 2. Wrap Remote Components with ErrorBoundary:
 
 ```sh
-import FallbackComponent from "./FallbackComponent/FallbackComponent";
+import FallbackComponent from "../../FallbackComponent/FallbackComponent";
 import { ErrorBoundary } from "react-error-boundary";
 
-<ErrorBoundary
-  FallbackComponent={FallbackComponent}
-  resetKeys={["someKey"]}
->
+<ErrorBoundary FallbackComponent={FallbackComponent}>
   <React.Suspense fallback={<div>Loading Remote App1...</div>}>
     <AppR1 />
   </React.Suspense>
