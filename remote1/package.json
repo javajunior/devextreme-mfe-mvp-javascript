@@ -22,7 +22,8 @@
     "test": "craco test",
     "eject": "react-scripts eject",
     "build-themes": "devextreme build",
-    "postinstall": "npm run build-themes"
+    "postinstall": "npm run build-themes",
+    "serve": "npm run build && serve -s build -p 3001"
   },
   "eslintConfig": {
     "extends": [
